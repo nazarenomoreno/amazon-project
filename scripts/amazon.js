@@ -7,17 +7,13 @@ products.forEach((products) =>{
   productsHTML= productsHTML + `
     <div class="product-container">
           <div class="product-image-container">
-            <img class="product-image"
-              src="${products.image}">
+            <img class="product-image" src="${products.image}">
           </div>
 
-          <div class="product-name limit-text-to-2-lines">
-            ${products.name}
-          </div>
+          <div class="product-name limit-text-to-2-lines">${products.name}</div>
 
           <div class="product-rating-container">
-            <img class="product-rating-stars"
-              src="images/ratings/rating-${products.rating.stars}.png">
+            <img class="product-rating-stars" src="images/ratings/rating-${products.rating.stars}.png">
             <div class="product-rating-count link-primary">
               ${products.rating.count}
             </div>
@@ -49,13 +45,44 @@ products.forEach((products) =>{
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary" data-product-id="${products.id}" >
             Add to Cart
           </button>
-        </div>
+        </div> 
   `;
 })
 
-console.log(productsHTML)
+
 
 document.querySelector('.products-grid').innerHTML= productsHTML;
+
+document.querySelectorAll('.add-to-cart-button').forEach((button)=>{
+  button.addEventListener('click', ()=>{
+    const productId = button.dataset.productId;       //obtenemos el id del producto con el dataset y lo almacenamos
+
+    let matchingItem;                                        //esta variable sirve para saber si el producto existe en el carrito
+
+    cart.forEach((item)=>{                          //si el carrito esta vacio, no se recorre
+      if (productId === item.productId){
+        matchingItem = item;
+
+      }
+    });
+
+    if (matchingItem){
+      matchingItem.quantity +=1;        //si marchingItem esta undefined, no se ejecuta esto
+    } else{                             //pero si esto
+      cart.push(                                              //lo guardamos en el carrito
+        {productId: productId,
+        quantity:1}
+      )                          
+    }
+
+
+    
+    console.log(cart)
+  });
+});
+
+//12 horas 14 minutos 
+
