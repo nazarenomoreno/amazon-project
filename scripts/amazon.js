@@ -1,4 +1,5 @@
 
+import {cart} from '../data/cart.js';
 
 let productsHTML ='';
 
@@ -81,14 +82,14 @@ document.querySelectorAll('.add-to-cart-button').forEach((button)=>{
     let cartQuantity =0;
 
     cart.forEach((item)=>{
-      cartQuantity += item.quantity;
+      cartQuantity += item.quantity;            //sumamos la cantidad de productos que hay en el carritos
     })
     
-    document.querySelector('.cart-quantity').innerHTML= cartQuantity;
+    document.querySelector('.cart-quantity').innerHTML= cartQuantity;   //usamos DOM para agregar en el html
 
     console.log(cart)
   });
 });
 
-//12 horas 14 minutos 
+//12 horas 38 minutos 
 
