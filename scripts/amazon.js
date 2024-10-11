@@ -1,6 +1,6 @@
 
-import {cart} from '../data/cart.js';
-import { products } from '../data/products.js';
+import {cart, AddToCart} from '../data/cart.js';
+import {products} from '../data/products.js';
 
 let productsHTML ='';
 
@@ -58,37 +58,25 @@ products.forEach((products) =>{
 
 document.querySelector('.products-grid').innerHTML= productsHTML;
 
-document.querySelectorAll('.add-to-cart-button').forEach((button)=>{
-  button.addEventListener('click', ()=>{
-    const productId = button.dataset.productId;       //obtenemos el id del producto con el dataset y lo almacenamos
+function updateCartQuantity(){
+  let cartQuantity =0;
 
-    let matchingItem;                                        //esta variable sirve para saber si el producto existe en el carrito
-
-    cart.forEach((item)=>{                          //si el carrito esta vacio, no se recorre
-      if (productId === item.productId){
-        matchingItem = item;
-
-      }
-    });
-
-    if (matchingItem){
-      matchingItem.quantity +=1;        //si marchingItem esta undefined, no se ejecuta esto
-    } else{                             //pero si esto
-      cart.push(                                              //lo guardamos en el carrito
-        {productId: productId,
-        quantity:1}
-      )                          
-    }
-
-    let cartQuantity =0;
-
-    cart.forEach((item)=>{
-      cartQuantity += item.quantity;            //sumamos la cantidad de productos que hay en el carritos
+    cart.forEach((cartItem)=>{
+      cartQuantity += cartItem.quantity;            //sumamos la cantidad de productos que hay en el carritos
     })
     
     document.querySelector('.cart-quantity').innerHTML= cartQuantity;   //usamos DOM para agregar en el html
 
     console.log(cart)
+}
+
+document.querySelectorAll('.add-to-cart-button').forEach((button)=>{
+  button.addEventListener('click', ()=>{
+    const productId = button.dataset.productId;       //obtenemos el id del producto con el dataset y lo almacenamos
+
+    AddToCart(productId);
+    updateCartQuantity();
+    
   });
 });
 
