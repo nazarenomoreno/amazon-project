@@ -1,5 +1,5 @@
 
-export const cart =[{
+export let cart =[{
   productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
   quantity: 2,
 },
@@ -27,4 +27,20 @@ export function AddToCart(productId){
         quantity:1}
       )                          
     }
+}
+
+
+export function removeFromCart(productId){          //funcion para eliminar un producto del carrito con el boton Eliminar
+    const newCart =[];                           //creamos un carrito nuevo
+
+    cart.forEach((cartItem)=>{
+      if (productId !== cartItem.productId){         //si el id del producto que quiero eliminar no es igual al id del producto, entonces
+        newCart.push(cartItem);                                /*se guarda el elemento en el carrito*/
+      }
+      
+    });
+
+    cart=newCart;           //el carrito se modifica con los elementos del nuevo carrito, pero se sigue llamando 'cart'
+
+
 }

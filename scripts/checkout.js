@@ -1,6 +1,7 @@
-import {cart} from '../data/cart.js';
+import {cart, removeFromCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from '../utils/money.js';
+
 
 let cartSummaryHTML=''; //esto concatena los html de los productos que hay en el carrito
 
@@ -41,7 +42,7 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
                 <span class="update-quantity-link link-primary">
                   Actualizar
                 </span>
-                <span class="delete-quantity-link link-primary">
+                <span class="delete-quantity-link link-primary" data-product-id="${productId}">
                   Eliminar
                 </span>
               </div>
@@ -97,3 +98,22 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
 
 console.log(cartSummaryHTML); //se muestra en la consola el html de los productos que haya en el carrito
 document.querySelector('.order-summary').innerHTML= cartSummaryHTML;//cartSummaryHTML concatena el html de los productos que hay en el cart y se muestra en la pagina de productos que hay en el carrito
+
+
+document.querySelectorAll('.delete-quantity-link').forEach((link)=>{    //para todos los botones eliminar
+
+    link.addEventListener('click',()=>{
+      
+        const productId = link.dataset.productId          //guardamos en una variable el id del boton que esta en el dataset
+        removeFromCart(productId);
+
+        console.log(cart);
+        
+
+
+
+
+
+
+    })
+})
