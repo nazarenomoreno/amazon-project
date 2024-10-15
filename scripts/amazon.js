@@ -45,11 +45,11 @@ products.forEach((products) =>{
 
           <div class="added-to-cart">
             <img src="images/icons/checkmark.png">
-            Added
+            Añadido
           </div>
 
           <button class="add-to-cart-button button-primary" data-product-id="${products.id}" >
-            Add to Cart
+            Añadir al carrito
           </button>
         </div> 
   `;
@@ -85,5 +85,5 @@ document.querySelectorAll('.add-to-cart-button').forEach((button)=>{
   });
 });
 
-//12 horas 38 minutos 
+//13 horas 30 minutos 
 

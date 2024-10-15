@@ -1,6 +1,6 @@
 import {cart} from '../data/cart.js';
 import {products} from '../data/products.js';
-import { formatCurrency } from '../utils/money.js';
+import {formatCurrency} from '../utils/money.js';
 
 let cartSummaryHTML=''; //esto concatena los html de los productos que hay en el carrito
 
@@ -20,7 +20,7 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
    cartSummaryHTML = cartSummaryHTML + `
       <div class="cart-item-container">
           <div class="delivery-date">
-            Delivery date: Wednesday, June 15
+            Fecha de entrega: Miércoles 15 de Junio
           </div>
 
           <div class="cart-item-details-grid">
@@ -36,20 +36,20 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
               </div>
               <div class="product-quantity">
                 <span>
-                  Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                  Cantidad: <span class="quantity-label">${cartItem.quantity}</span>
                 </span>
                 <span class="update-quantity-link link-primary">
-                  Update
+                  Actualizar
                 </span>
                 <span class="delete-quantity-link link-primary">
-                  Delete
+                  Eliminar
                 </span>
               </div>
             </div>
 
             <div class="delivery-options">
               <div class="delivery-options-title">
-                Choose a delivery option:
+                Elige una opción de entrega:
               </div>
 
               <div class="delivery-option">
@@ -57,10 +57,10 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
                   name="delivery-option-${productId}">               <!--si comparten el mismo nombre habra una sola seleccion-->
                 <div>
                   <div class="delivery-option-date">
-                    Tuesday, June 21
+                    Martes 21 de Junio
                   </div>
                   <div class="delivery-option-price">
-                    FREE Shipping
+                    Envio GRATIS
                   </div>
                 </div>
               </div>
@@ -69,10 +69,10 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
                   name="delivery-option-${productId}">
                 <div>
                   <div class="delivery-option-date">
-                    Wednesday, June 15
+                    Miercoles 15 de Junio
                   </div>
                   <div class="delivery-option-price">
-                    $4.99 - Shipping
+                    $4.99 - Envio
                   </div>
                 </div>
               </div>
@@ -81,10 +81,10 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
                   name="delivery-option-${productId}">
                 <div>
                   <div class="delivery-option-date">
-                    Monday, June 13
+                    Lunes 13 de Junio
                   </div>
                   <div class="delivery-option-price">
-                    $9.99 - Shipping
+                    $9.99 - Envio
                   </div>
                 </div>
               </div>
@@ -97,5 +97,3 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
 
 console.log(cartSummaryHTML); //se muestra en la consola el html de los productos que haya en el carrito
 document.querySelector('.order-summary').innerHTML= cartSummaryHTML;//cartSummaryHTML concatena el html de los productos que hay en el cart y se muestra en la pagina de productos que hay en el carrito
-
-// 13 horas 17 minutos
