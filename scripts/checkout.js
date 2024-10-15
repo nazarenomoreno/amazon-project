@@ -19,7 +19,7 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
    
 
    cartSummaryHTML = cartSummaryHTML + `
-      <div class="cart-item-container">
+      <div class="cart-item-container js-cart-item-container-${productId}">
           <div class="delivery-date">
             Fecha de entrega: Miércoles 15 de Junio
           </div>
@@ -61,7 +61,7 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
                     Martes 21 de Junio
                   </div>
                   <div class="delivery-option-price">
-                    Envio GRATIS
+                    Envío GRATIS
                   </div>
                 </div>
               </div>
@@ -73,7 +73,7 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
                     Miercoles 15 de Junio
                   </div>
                   <div class="delivery-option-price">
-                    $4.99 - Envio
+                    $4.99 - Envío
                   </div>
                 </div>
               </div>
@@ -85,7 +85,7 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
                     Lunes 13 de Junio
                   </div>
                   <div class="delivery-option-price">
-                    $9.99 - Envio
+                    $9.99 - Envío
                   </div>
                 </div>
               </div>
@@ -100,14 +100,15 @@ console.log(cartSummaryHTML); //se muestra en la consola el html de los producto
 document.querySelector('.order-summary').innerHTML= cartSummaryHTML;//cartSummaryHTML concatena el html de los productos que hay en el cart y se muestra en la pagina de productos que hay en el carrito
 
 
+
 document.querySelectorAll('.delete-quantity-link').forEach((link)=>{    //para todos los botones eliminar
 
-    link.addEventListener('click',()=>{
+    link.addEventListener('click',()=>{                             //le damos funcionalidad al boton eliminar
       
         const productId = link.dataset.productId          //guardamos en una variable el id del boton que esta en el dataset
-        removeFromCart(productId);
+        removeFromCart(productId);                         //ejecuta la funcion eliminar un producto del carrito
 
-        console.log(cart);
+        document.querySelector(`.js-cart-item-container-${productId}`).remove();  //elimina el producto del DOM
         
 
 
@@ -115,5 +116,7 @@ document.querySelectorAll('.delete-quantity-link').forEach((link)=>{    //para t
 
 
 
-    })
-})
+    });
+});
+
+
