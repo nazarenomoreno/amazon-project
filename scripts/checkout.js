@@ -110,12 +110,6 @@ document.querySelectorAll('.delete-quantity-link').forEach((link)=>{    //para t
 
         document.querySelector(`.js-cart-item-container-${productId}`).remove();  //elimina el producto del DOM
         
-
-
-
-
-
-
     });
 });
 
