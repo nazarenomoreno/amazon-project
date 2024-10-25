@@ -2,23 +2,24 @@
 
 
 export let cart =  JSON.parse(localStorage.getItem('cart')) ;      //usamos localStorage para obtener los datos del navegador
+// al recargar el localStorage se cargara el carrito modificado o si esta vacio, uno nuevo
 
 if(!cart){                             //si el carrito es falsy (null), es decir, esta vacio:
   cart= [{                                                 //se llena (no se inicializa, se llena)
-    productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+    productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     quantity: 2,
     deliveryOptionId:'1'
 
   },
   {
-    productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
+    productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
     quantity: 1,
     deliveryOptionId:'2'
   }];
 }
 
 
-function saveToStorage(){
+function saveToStorage(){                  //funcion para guardar en el localStorage
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
@@ -26,7 +27,7 @@ function saveToStorage(){
 
 
 
-export function AddToCart(productId){
+export function AddToCart(productId){                         // funcion para guardar producto en el carrito
     let matchingItem;                                        //esta variable sirve para saber si el producto existe en el carrito
 
     cart.forEach((cartItem)=>{                                 //si el carrito esta vacio, no se recorre
@@ -52,7 +53,7 @@ export function AddToCart(productId){
 
 
 export function removeFromCart(productId){          //funcion para eliminar un producto del carrito con el boton Eliminar
-    const newCart =[];                           //creamos un carrito nuevo
+    const newCart =[];                             //creamos un carrito nuevo
 
     cart.forEach((cartItem)=>{
       if (productId !== cartItem.productId){         //si el id del producto que quiero eliminar no es igual al id del producto, entonces
@@ -65,3 +66,24 @@ export function removeFromCart(productId){          //funcion para eliminar un p
 
     saveToStorage(); 
 }
+
+
+
+
+
+export function updateDeliveryOption(productId, deliveryOptionId) {     //funcion para actualizar la opcion de delivery
+  let matchingItem;                                        //esta variable sirve para saber si el producto existe en el carrito
+
+  cart.forEach((cartItem)=>{                                 //si el carrito esta vacio, no se recorre
+    if (productId === cartItem.productId){
+      matchingItem = cartItem;                        // se guarda el producto del carrito correspondiente
+
+    }   
+  });
+
+  matchingItem.deliveryOptionId = deliveryOptionId;    //se le asigna al producto del carrito un nuevo id de delivery al cual se clickeo
+  
+  saveToStorage();
+  
+};
+

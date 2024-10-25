@@ -1,9 +1,11 @@
-import {cart, removeFromCart} from '../data/cart.js';
+import {cart, removeFromCart, updateDeliveryOption} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from '../utils/money.js';
-import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'  //libreria externa con codigo javascript
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'  //libreria externa con codigo javascript (para los dias)
 import {deliveryOptions} from '../data/deliveryOptions.js';
  
+
+
 
 const today = dayjs();   //la funcion dayjs retorna un objeto que se guardara en otro objeto 'today'
 const deliveryDate = today.add(7,'days');   //añade 7 dias (aunque puede ser months, hours, weeks)-> add metodo especial de dayjs
@@ -35,21 +37,21 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
 
    deliveryOptions.forEach((option)=>{
       if(option.id===deliveryOptionId){
-        deliveryOption=option;
+        deliveryOption = option;
       }
    })
 
    const today = dayjs();                                               //fecha actual
    const deliveryDate = today.add(                                     //fecha actual + dias de entrega
-      deliveryOption.deliveryDays, 'days'                              //cantidad y tipo de cambio
+      deliveryOption.deliveryDays, 'days'                               //cantidad y tipo de cambio
     );
 
-   const dateString = deliveryDate.format('dddd, MMMM, D')           //formato de muestra
+   const dateString = deliveryDate.format('dddd, MMMM, D');          //formato de muestra
     //-----------------
 
 
    cartSummaryHTML = cartSummaryHTML + `
-      <div class="cart-item-container js-cart-item-container-${productId}">
+      <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
           <div class="delivery-date">
             Fecha de entrega: ${dateString}               <!--fecha de entrega que calculamos antes-->
           </div>
@@ -72,7 +74,7 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
                 <span class="update-quantity-link link-primary">
                   Actualizar
                 </span>
-                <span class="delete-quantity-link link-primary" data-product-id="${productId}">
+                <span class="delete-quantity-link link-primary" data-product-id="${matchingProduct.id}">
                   Eliminar
                 </span>
               </div>
@@ -82,7 +84,7 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
               <div class="delivery-options-title">
                 Elige una opción de entrega:
               </div>
-              ${deliveryOptionsHMTL(productId, cartItem)}               <!-- funcion para mostrar HTML las opciones de delivery -->
+              ${deliveryOptionsHMTL(matchingProduct, cartItem)}               <!-- funcion para mostrar HTML las opciones de delivery -->
             </div>
           </div>
       </div>
@@ -93,7 +95,7 @@ cart.forEach((cartItem)=>{                          //se recorre el carrito y pa
 
 
 
-function deliveryOptionsHMTL(productId, cartItem){                //funcion para generar el HTML de las opciones de delivery
+function deliveryOptionsHMTL(matchingProduct, cartItem){                //funcion para generar el HTML de las opciones de delivery
   let html ='';
 
   deliveryOptions.forEach((deliveryOption)=>{                             //para cada opcion de delivery
@@ -112,11 +114,12 @@ function deliveryOptionsHMTL(productId, cartItem){                //funcion para
     const isChecked = deliveryOption.id === cartItem.deliveryOptionId;     //si la opcion del carrito es igual a la opcion del delivery
 
     html +=`                                                          <!-- se concatenca el html -->
-        <div class="delivery-option">
+        <div class="delivery-option js-delivery-option" data-product-id="${matchingProduct.id}"
+        data-delivery-option-id="${deliveryOption.id}">
             <input type="radio"
-                ${isChecked ? 'checked' : ''}
+                ${isChecked ? 'checked' : ''}                        
                 class="delivery-option-input"          
-                name="delivery-option-${productId}">
+                name="delivery-option-${matchingProduct.id}">
             <div>
               <div class="delivery-option-date">
                 ${dateString}
@@ -149,4 +152,17 @@ document.querySelectorAll('.delete-quantity-link').forEach((link)=>{    //para t
     });
 });
 
+
+
+
+document.querySelectorAll('.js-delivery-option').forEach((element)=>{     //para los contenedores de opciones de delivery en la pagina
+  element.addEventListener('click',()=>{                                  // se les da funcionalidad al contenedor
+    const {productId, deliveryOptionId} = element.dataset;            //guardo en dos constantes los valores del dataset del contenedor
+    updateDeliveryOption(productId, deliveryOptionId);                    //llamo a la funcion con esos dos argumentos
+
+    //los cuales son: el id original del producto y el id del contenedor al cual le hice click
+    
+  });
+  
+});
 
