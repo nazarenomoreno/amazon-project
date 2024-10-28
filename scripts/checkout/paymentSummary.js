@@ -6,7 +6,7 @@ import {getProduct} from '../../data/products.js';
 import {getDeliveryOption} from '../../data/deliveryOptions.js';
 import {formatCurrency} from '../utils/money.js';
 
-export function renderPaymentSummary(){ 
+export function renderPaymentSummary(){        //esta funcion hace el resumen del pago total del carrito
     let productPriceCents = 0;                   //aca se guardará la suma total de (cantidad de producto del carrito*su precio)
     let shippingPriceCents = 0;                  //aca se guardará el precio de envio
 

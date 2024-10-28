@@ -6,7 +6,7 @@ import {products} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'  //libreria externa con codigo javascript (para los dias)
 import {deliveryOptions} from '../../data/deliveryOptions.js';
- 
+import {renderPaymentSummary} from './paymentSummary.js'; 
 
 
 
@@ -152,7 +152,8 @@ export function renderOrderSummary(){              //funcion que carga la págin
           removeFromCart(productId);                         //ejecuta la funcion eliminar un producto del carrito
 
           document.querySelector(`.js-cart-item-container-${productId}`).remove();  //elimina el producto del DOM
-          
+
+          renderPaymentSummary();                                 //se actualiza el resumen de pago
       });
   });
 
@@ -169,6 +170,7 @@ export function renderOrderSummary(){              //funcion que carga la págin
       renderOrderSummary();                      //apenas se cambia la opcion, se actuliza en la pantalla
       //si no estaria esta funcion, se tiene que recargar la pagina para que se actualice              
       
+      renderPaymentSummary();      //apenas se cambia la opcion, se actualiza el resumen de pago
       
     });
     
