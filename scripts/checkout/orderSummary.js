@@ -17,7 +17,7 @@ console.log(deliveryDate.format('dddd, MMMM, D'))  //se muestra en ese formato->
 
 
 //----
-export function renderOrderSummary(){             //funcion que carga la página
+export function renderOrderSummary(){              //funcion que carga la página
 
 
   let cartSummaryHTML=''; //esto concatena los html de los productos que hay en el carrito. es global porque debe concatenarse
@@ -34,16 +34,16 @@ export function renderOrderSummary(){             //funcion que carga la página
     })
 
 
-
+       
     //----------
     const deliveryOptionId = cartItem.deliveryOptionId;   //se recupera el dia que en el carrito el cliente seleccionó para la entrega
-    let deliveryOption;                                              // para luego mostrarlo en la fecha de entrega y HTML
+    let deliveryOption;                                              //para luego mostrarlo en la fecha de entrega y HTML
 
     deliveryOptions.forEach((option)=>{
-        if(option.id===deliveryOptionId){
-          deliveryOption = option;
-        }
-    })
+      if(option.id===deliveryOptionId){   //se compara el id de las opciones de delivery con el id de la opcion del producto del carrito
+        deliveryOption = option;                         //opcion del array original de opciones
+      }
+    });
 
     const today = dayjs();                                               //fecha actual
     const deliveryDate = today.add(                                     //fecha actual + dias de entrega
@@ -160,7 +160,7 @@ export function renderOrderSummary(){             //funcion que carga la página
 
 
   document.querySelectorAll('.js-delivery-option').forEach((element)=>{     //para los contenedores de opciones de delivery en la pagina
-    element.addEventListener('click',()=>{                                  // se les da funcionalidad al contenedor
+    element.addEventListener('click',()=>{                                  //se les da funcionalidad al contenedor
       const {productId, deliveryOptionId} = element.dataset;            //guardo en dos constantes los valores del dataset del contenedor
       updateDeliveryOption(productId, deliveryOptionId);                    //llamo a la funcion con esos dos argumentos
       //los cuales son: el id original del producto y el id del contenedor al cual le hice click

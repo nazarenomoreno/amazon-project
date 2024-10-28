@@ -1,4 +1,17 @@
 
+
+export function getProduct(productId){             
+  let matchingProduct;                              //en parametro se guarda el id del producto del carrito
+
+  products.forEach((product)=>{                 //se recorren todos los productos originales
+    if(product.id === productId){               //si el id del producto original es igual al id del producto del carrito 
+      matchingProduct=product;                   //se guarda en una variable el producto original
+    };
+  });
+  return matchingProduct;
+};
+
+
 export const products = [               //productos que se venden, con sus respectivos datos
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
