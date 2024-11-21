@@ -1,5 +1,5 @@
 
-import {AddToCart, cart, loadFromStorage, updateDeliveryOption} from "../../data/cart.js";
+import {AddToCart, cart, loadFromStorage} from "../../data/cart.js";
 //en jasmine un mock solo dura un test
 
 describe('test suites: addToCart', ()=>{
@@ -16,7 +16,7 @@ describe('test suites: addToCart', ()=>{
     });  
     loadFromStorage();
 
-    addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');         //agrega un producto al carrito y actualiza el localStorage
+    AddToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');         //agrega un producto al carrito y actualiza el localStorage
     expect(cart.length).toEqual(1);                             //verifica que carrito es igual a 1
     expect(localStorage.setItem).toHaveBeenCalledTimes(1);    //confirma que el metodo localStorage.setItem fue llamado una 1 vez
     expect(cart[0].productId).toEqual('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');  //verifica si lo que esta en el carrito es lo que agregamos
@@ -37,7 +37,7 @@ describe('test suites: addToCart', ()=>{
     loadFromStorage();                       
 
  
-    addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');         //agrega un producto al carrito y actualiza el localStorage
+    AddToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');         //agrega un producto al carrito y actualiza el localStorage
     expect(cart.length).toEqual(1);                             //verifica que carrito es igual a 1
     expect(localStorage.setItem).toHaveBeenCalledTimes(1);    //confirma que el metodo localStorage.setItem fue llamado una 1 vez
     expect(cart[0].productId).toEqual('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');  //verifica si lo que esta en el carrito es lo que agregamos
@@ -48,4 +48,3 @@ describe('test suites: addToCart', ()=>{
 });
 
 
-//16:25

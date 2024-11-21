@@ -55,7 +55,7 @@ export function renderOrderSummary(){              //funcion que carga la págin
 
 
     cartSummaryHTML = cartSummaryHTML + `
-        <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
+        <div class="cart-item-container js-test-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
               Fecha de entrega: ${dateString}               <!--fecha de entrega que calculamos antes-->
             </div>
@@ -71,14 +71,15 @@ export function renderOrderSummary(){              //funcion que carga la págin
                 <div class="product-price">
                   $${formatCurrency(matchingProduct.priceCents)}
                 </div>
-                <div class="product-quantity">
+                <div class="product-quantity js-test-quantity-product${matchingProduct.id}">
                   <span>
                     Cantidad: <span class="quantity-label">${cartItem.quantity}</span>
                   </span>
                   <span class="update-quantity-link link-primary">
                     Actualizar
                   </span>
-                  <span class="delete-quantity-link link-primary" data-product-id="${matchingProduct.id}">
+                  <span class="delete-quantity-link js-test-delete-link-${matchingProduct.id} link-primary"
+                  data-product-id="${matchingProduct.id}">
                     Eliminar
                   </span>
                 </div>
@@ -148,7 +149,7 @@ export function renderOrderSummary(){              //funcion que carga la págin
 
       link.addEventListener('click',()=>{                             //le damos funcionalidad al boton eliminar
         
-          const productId = link.dataset.productId          //guardamos en una variable el id del boton que esta en el dataset
+          const productId = link.dataset.productId          //guardamos en   una variable el id del boton que esta en el dataset
           removeFromCart(productId);                         //ejecuta la funcion eliminar un producto del carrito
 
           document.querySelector(`.js-cart-item-container-${productId}`).remove();  //elimina el producto del DOM
