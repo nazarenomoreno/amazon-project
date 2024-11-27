@@ -6,20 +6,20 @@
 class Cart {                //PascalCase para cosas que generan objetos
 
   cartItems                               //carrito vacio (undefined)
-  localStorageKey= undefined;               //donde se guardara la clave del localStorage
+  #localStorageKey= undefined;               //donde se guardara la clave del localStorage, es un método privado
   
 
   constructor(localStorageKey){
-    this.localStorageKey= localStorageKey;      //this hace referencia a la instancia de la clase (cart para el 1er carrito)
-    this.loadFromStorage();               
+    this.#localStorageKey= localStorageKey;      //this hace referencia a la instancia de la clase (cart para el 1er carrito)
+    this.#loadFromStorage();                      //llenamos el carrito
   
 
   }
 
 
   //------------------------              Método para cargar el localStorage
-  loadFromStorage(){                         
-    this.cartItems =  JSON.parse(localStorage.getItem(this.localStorageKey)) ;      //usamos localStorage para obtener los datos del navegador
+  #loadFromStorage(){                         
+    this.cartItems =  JSON.parse(localStorage.getItem(this.#localStorageKey)) ;      //usamos localStorage para obtener los datos del navegador
     //al recargar el localStorage se cargara el carrito modificado o si esta vacio, uno nuevo
     
     if(!this.cartItems){                             //si el carrito es falsy (null), es decir, esta vacio:
@@ -40,7 +40,7 @@ class Cart {                //PascalCase para cosas que generan objetos
 
   //-----------------------                    Método para guardar en el localStorage
   saveToStorage(){                                           
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
 
