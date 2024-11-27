@@ -1,3 +1,4 @@
+import {formatCurrency} from "../scripts/utils/money.js";
 
 
 export function getProduct(productId){             
@@ -11,6 +12,31 @@ export function getProduct(productId){
   return matchingProduct;
 };
 
+
+
+class Product {
+  id;             //definimos propiedades indefinidas
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor(productDetails){                  //el parametro guarda un objeto
+    this.id = productDetails.id;
+    this.image = productDetails.image;
+    this.name = productDetails.name;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
+  }
+
+  getStarsUrl(){
+    return `images/ratings/rating-${this.rating.stars}.png`;
+  }
+
+  getPrice(){
+    return `$${formatCurrency(this.priceCents)}`;
+  }
+}
 
 export const products = [               //productos que se venden, con sus respectivos datos
   {
@@ -671,4 +697,6 @@ export const products = [               //productos que se venden, con sus respe
       "mens"
     ]
   }
-]; 
+].map((productDetails) =>{                    //este parametro representa cada objeto producto
+  return new Product(productDetails);         //el nuevo array con los objetos de la clase, se llamara products nuevamente
+});
