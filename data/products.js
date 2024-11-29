@@ -62,7 +62,20 @@ class Clothing extends Product{               //la clase Clothing hereda de la c
   }
 }
 
+/*
+const date = new Date();                      ->  fecha de hoy (usa clases)
+console.log(date);        
+console.log(date.toLocaleTimeString());       -> me muestra la hora actual de mi pais
+*/
 
+/*
+function logThis(){
+  console.log(this)                  -> sera undefined
+}
+
+logThis.call('hello');             -> le puedo dar un valor a this
+
+*/
 
 export const products = [               //productos que se venden, con sus respectivos datos
   {
