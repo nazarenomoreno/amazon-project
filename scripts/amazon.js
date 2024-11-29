@@ -41,6 +41,9 @@ products.forEach((products) =>{
             </select>
           </div>
 
+          ${products.extraInfoHTML()}               <!--invoca el metodo del constructor para los productos de ropa -->
+
+
           <div class="product-spacer"></div>
 
           <div class="added-to-cart">

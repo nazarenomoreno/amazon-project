@@ -36,7 +36,33 @@ class Product {
   getPrice(){
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML(){        //si el producto no es ropa no se muestra nada (este metodo es para no generar un error)
+    return '';
+  }
 }
+
+
+
+class Clothing extends Product{               //la clase Clothing hereda de la clase Product
+  sizeChartLink;                     //nuevo atributo a parte de los heredados
+
+  constructor(productDetails){          //constructor de la clase padre
+    super(productDetails);                //llama al constructor de la clase padre (y sus seteos)
+    this.sizeChartLink = productDetails.sizeChartLink;        //nueva propiedad a setear
+  }
+
+  extraInfoHTML(){                                         //metodo que brinda informacion extra de talles para la ropa
+    //super.extraInfoHTML()                                      //llamaria a un metodo de la clase padre
+    return `
+      <a href="${this.sizeChartLink}" target="_blank">
+      Tabla de tallas
+      </a>      
+    `;                                                    //esto se invocara en el HTML de producto ropa
+  }
+}
+
+
 
 export const products = [               //productos que se venden, con sus respectivos datos
   {
@@ -698,5 +724,12 @@ export const products = [               //productos que se venden, con sus respe
     ]
   }
 ].map((productDetails) =>{                    //este parametro representa cada objeto producto
+
+  if(productDetails.type==='clothing'){     //si el producto es ropa, se usa la clase Clothing
+    return new Clothing(productDetails);        //para poder usar los nuevos atributos y metodos
+  }
+
+
   return new Product(productDetails);         //el nuevo array con los objetos de la clase, se llamara products nuevamente
+  //el array contendra productos de las dos clases
 });
