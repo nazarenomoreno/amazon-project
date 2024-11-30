@@ -77,6 +77,54 @@ function logThis(){
 logThis.call('hello');             -> le puedo dar un valor a this
 */
 
+
+
+
+
+
+
+
+
+
+/*                           SE CARGA LOS PRODUCTOS DESDE EL BACKEND           */       
+export let products = [];
+
+export function loadProducts(renderProductsGrid){
+  const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener('load',()=>{
+      products = JSON.parse(xhr.response).map((productDetails) =>{          //transorma JSON en un objeto y lo recorre
+
+        if(productDetails.type==='clothing'){     //si el producto es ropa, se usa la clase Clothing
+          return new Clothing(productDetails);        //para poder usar los nuevos atributos y metodos
+        }
+      
+      
+        return new Product(productDetails);         //el nuevo array con los objetos de la clase, se llamara products nuevamente
+        //el array contendra productos de las dos clases
+      });
+      console.log('productos cargados')
+
+      renderProductsGrid();
+    });
+
+
+  xhr.open('GET', 'https://supersimplebackend.dev/products')
+  xhr.send();
+};
+
+
+
+
+
+
+
+
+
+                                      
+
+/*                                                   SIN BACKEND
+
 export const products = [               //productos que se venden, con sus respectivos datos
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -746,3 +794,5 @@ export const products = [               //productos que se venden, con sus respe
   return new Product(productDetails);         //el nuevo array con los objetos de la clase, se llamara products nuevamente
   //el array contendra productos de las dos clases
 });
+
+*/
