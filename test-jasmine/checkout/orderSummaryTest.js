@@ -1,12 +1,17 @@
 
 import {renderOrderSummary} from "../../scripts/checkout/orderSummary.js";
 import {loadFromStorage, cart} from "../../data/cart.js";
-
+import {loadProducts} from "../../data/products.js";
 
 
 describe('test suite: renderOrderSummary', ()=>{
 
-  
+  beforeAll((done)=>{
+    loadProducts(()=>{
+      done();          //nos permite controlar cuando avanzar al siguiente paso
+    });
+    
+  });
 
   it('mostrar el carrito', ()=>{
     document.querySelector('.js-test-container').innerHTML= `
