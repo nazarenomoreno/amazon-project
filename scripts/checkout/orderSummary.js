@@ -136,11 +136,11 @@ export function renderOrderSummary(){              //funcion que carga la págin
             </div>
       `
     });
-    return html;                                                      //devuelve el html concatenado
+    return html;                                                       //devuelve el html concatenado
   }
 
 
-  console.log(cartSummaryHTML); //se muestra en la consola el html de los productos que haya en el carrito
+  console.log(cartSummaryHTML);  //se muestra en la consola el html de los productos que haya en el carrito
   document.querySelector('.order-summary').innerHTML= cartSummaryHTML;  //cartSummaryHTML concatena el html de los productos que hay en el cart y se muestra en la pagina de productos que hay en el carrito
 
 

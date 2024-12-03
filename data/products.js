@@ -113,6 +113,7 @@ export function loadProducts(renderProductsGrid){
   xhr.send();
 };
 
+//el metodo ().map crea un nuevo arreglo con el resultado de la funcion que yo le pase
 
 
 
