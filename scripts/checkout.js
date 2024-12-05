@@ -2,7 +2,7 @@
 import {renderOrderSummary} from './checkout/orderSummary.js';
 import {renderPaymentSummary} from './checkout/paymentSummary.js';
 import '../data/backend-practice.js'
-import {loadProducts} from '../data/products.js';
+import {loadProducts, loadProductsFetch} from '../data/products.js';
 
 new Promise((resolve)=>{
   loadProducts(()=>{
@@ -56,13 +56,9 @@ new Promise((resolve)=>{
 */
 
 
-/*                             array de promesas: nos permite correr mas de una promesa al mismo tiempo
+/*                                array de promesas: nos permite correr mas de una promesa al mismo tiempo
 Promise.all([
-  new Promise((resolve)=>{
-    loadProducts(()=>{
-      resolve('value1');
-    });
-  }),
+  loadProductsFetch(),        caso particular donde usamos fetch para cargar objetos (se indenta asi porque ya retorna una Promesa)
 
   new Promise((resolve)=>{
     loadCart(()=>{                                  

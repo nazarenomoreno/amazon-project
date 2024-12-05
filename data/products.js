@@ -89,6 +89,49 @@ logThis.call('hello');             -> le puedo dar un valor a this
 /*                           SE CARGA LOS PRODUCTOS DESDE EL BACKEND           */       
 export let products = [];
 
+
+export function loadProductsFetch(){
+  const promise = fetch(                          //guardamos la promesa en la variable promise
+    'https://supersimplebackend.dev/products'
+
+  ).then((response)=>{   
+
+    return response.json();      
+
+  }).then((productsData)=>{
+    products = productsData.map((productDetails) =>{          //transorma JSON en un objeto y lo recorre
+
+      if(productDetails.type==='clothing'){     //si el producto es ropa, se usa la clase Clothing
+        return new Clothing(productDetails);        //para poder usar los nuevos atributos y metodos
+      }
+    
+    
+      return new Product(productDetails);         //el nuevo array con los objetos de la clase, se llamara products nuevamente
+      //el array contendra productos de las dos clases
+    });
+    console.log('productos cargados')
+  });       
+  
+  return promise
+}
+/*                                                  
+loadProductsFetch().then(()=>{
+  console.log('next step')
+});
+*/
+
+
+
+/*    Fetch()
+Por defecto las peticiones de Fetch son GET
+Obtenemos el response y se ejecuta el then
+Convertimos la solicitud de JSON a un objeto python (igual que JSON.parse)
+Retornamos otra promesa, porque es asincrono y necesitamos esperar que finalice para continuar con el siguiente paso
+
+*/ 
+
+
+
 export function loadProducts(renderProductsGrid){
   const xhr = new XMLHttpRequest();
 
