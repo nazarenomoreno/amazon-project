@@ -4,6 +4,52 @@ import {renderPaymentSummary} from './checkout/paymentSummary.js';
 import '../data/backend-practice.js'
 import {loadProducts, loadProductsFetch} from '../data/products.js';
 
+
+/* USAR ASYNC AWAIT
+
+async function loadPage(){
+  
+
+  await loadProductsFetch();
+
+  await new Promise((resolve)=>{           //esperamos que la promesa termine antes de continuar con la siguiente linea
+    loadCart(()=>{                                  
+      resolve();
+    });
+  });
+
+  renderOrderSummary();
+  renderPaymentSummary();
+
+  
+}
+
+loadPage();
+
+
+
+
+guardar un valor retornado de await
+
+async function loadPage(){
+
+  const value = await new Promise((resolve)=>{
+    loadCart(()=>{
+      resolve('value3');
+    });
+  });
+}
+
+
+*/
+
+
+
+
+
+
+
+
 new Promise((resolve)=>{
   loadProducts(()=>{
     resolve();          //llama a esta funcion cuando loadProducts ha terminado
