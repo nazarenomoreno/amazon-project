@@ -9,14 +9,27 @@ import {loadProducts, loadProductsFetch} from '../data/products.js';
 
 async function loadPage(){
   
+  try{                                          este bloque se utiliza para envolver código que puede lanzar errores
 
-  await loadProductsFetch();
+    throw 'error1'
 
-  await new Promise((resolve)=>{           //esperamos que la promesa termine antes de continuar con la siguiente linea
-    loadCart(()=>{                                  
-      resolve();
-    });
-  });
+    await loadProductsFetch();
+
+    await new Promise((resolve)=>{           esperamos que la promesa termine antes de continuar con la siguiente linea
+      loadCart(()=>{                                  
+        resolve();
+      });
+
+  });     
+  
+  } catch(error){
+     console.log('Unexpected error. Please try again later')
+  
+  }
+
+
+
+  
 
   renderOrderSummary();
   renderPaymentSummary();

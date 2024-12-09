@@ -110,10 +110,17 @@ export function loadProductsFetch(){
       //el array contendra productos de las dos clases
     });
     console.log('productos cargados')
+
+
+
+  }).catch((error)=>{                    //se ejecuta cuando hay un error. el parametro contiene informacion adicional del error
+    console.log('Unexpected error. Please try again later')         //similar al addEventListener 'error'
+                                                                
   });       
   
   return promise
 }
+
 /*                                                  
 loadProductsFetch().then(()=>{
   console.log('next step')
@@ -152,12 +159,18 @@ export function loadProducts(renderProductsGrid){
     });
 
 
-  xhr.open('GET', 'https://supersimplebackend.dev/products')
-  xhr.send();
-};
+
+    xhr.addEventListener('error', ()=>{            //ejecuta la funcion si ocurre un error durante la solicitud HTTP
+      console.log('Unexpected error. Please try again later')  //el parametro suele contener informacion adicional del error
+    });
+    
+
+
+    xhr.open('GET', 'https://supersimplebackend.dev/products')
+    xhr.send();
+  };
 
 //el metodo ().map crea un nuevo arreglo con el resultado de la funcion que yo le pase
-
 
 
 
