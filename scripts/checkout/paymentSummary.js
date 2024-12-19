@@ -5,6 +5,7 @@ import {cart} from '../../data/cart.js';
 import {getProduct} from '../../data/products.js';
 import {getDeliveryOption} from '../../data/deliveryOptions.js';
 import {formatCurrency} from '../utils/money.js';
+import {addOrder} from '../../data/orders.js';
 
 export function renderPaymentSummary(){        //esta funcion hace el resumen del pago total del carrito
     let productPriceCents = 0;                   //aca se guardará la suma total de (cantidad de producto del carrito*su precio)
@@ -71,7 +72,47 @@ export function renderPaymentSummary(){        //esta funcion hace el resumen de
               Haz tu pedido
             </button>
       `;
+
+
   document.querySelector('.payment-summary').innerHTML= paymentSummaryHTML;
+
+  
+
+  document.querySelector('.place-order-button')  
+  .addEventListener('click', async ()=>{
+
+
+    try{
+      const response = await fetch('https://supersimplebackend.dev/orders', {         //envia al servidor
+        method: 'POST',                                           //se utiliza para enviar datos al servidor para que los procese
+        headers: {                                     //esta peticion le da al backend mas info sobre nuestra peticion
+          'Content-Type': 'application/json'             // especifica que la solicitud esta en formato JSON
+        },
+        body: JSON.stringify({
+          cart: cart                                     //convierte a cart en una cadena JSON para enviarlo
+        })
+      });
+  
+      const order = await response.json();            //espera la respuesta del servidor y lo convierte en JSON
+      //order es un objeto
+      
+    
+      addOrder(order);                                //se guarda en el Storage la respuesta
+
+
+
+    } catch (error){                                     //si algo falla se ejecutará este codigo
+      console.log('error inesperado')
+    }
+
+
+    window.location.href = 'orders.html'
+
+
+  })
+
+  
+
 
 };  
 

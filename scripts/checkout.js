@@ -10,8 +10,8 @@ import {loadProducts, loadProductsFetch} from '../data/products.js';
 async function loadPage(){
   
   try{                                          este bloque se utiliza para envolver código que puede lanzar errores
-
-    throw 'error1'
+ 
+    throw 'error1'                              se guarda este valor en el parametro de catch
 
     await loadProductsFetch();
 
