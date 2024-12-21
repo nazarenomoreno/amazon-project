@@ -88,5 +88,30 @@
         </div>
       </div>
     </div>
+
+
+    <script> 
+      const url = new URL(window.location.href);       //se crea un objeto URL a partir de la URL de la página
+      console.log(url.searchParams.get('orderId'))     //se busca el valor del parametro orderId (123)
+      console.log(url.searchParams.get('productId')) 
+    </script>                                               
+
+
   </body>
 </html>
+
+
+
+
+<!--
+
+OBJETO URL
+{
+  href: "http://127.0.0.1:5500/orders.html?orderId=123",
+  origin: "http://127.0.0.1:5500",
+  pathname: "/orders.html",
+  search: "?orderId=123",
+  searchParams: URLSearchParams { "orderId" => "123" }
+}
+
+-->
