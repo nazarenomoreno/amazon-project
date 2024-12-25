@@ -1,3 +1,5 @@
+
+
 import {formatCurrency} from "../scripts/utils/money.js";
 
 
@@ -150,7 +152,7 @@ export function loadProducts(renderProductsGrid){
         }
       
       
-        return new Product(productDetails);         //el nuevo array con los objetos de la clase, se llamara products nuevamente
+        return new Product(productDetails);         //el nuevo array con los objetos de la clase, se llamará products nuevamente
         //el array contendra productos de las dos clases
       });
       console.log('productos cargados')
@@ -168,7 +170,7 @@ export function loadProducts(renderProductsGrid){
 
     xhr.open('GET', 'https://supersimplebackend.dev/products')
     xhr.send();
-  };
+};
 
 //el metodo ().map crea un nuevo arreglo con el resultado de la funcion que yo le pase
 

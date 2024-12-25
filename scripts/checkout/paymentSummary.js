@@ -107,13 +107,7 @@ export function renderPaymentSummary(){        //esta funcion hace el resumen de
 
 
     window.location.href = 'orders.html'
-
-
   })
-
-  
-
-
 };  
 
 
