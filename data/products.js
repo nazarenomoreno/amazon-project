@@ -141,8 +141,8 @@ Retornamos otra promesa, porque es asincrono y necesitamos esperar que finalice 
 
 
 
-export function loadProducts(renderProductsGrid){
-  const xhr = new XMLHttpRequest();
+export function loadProducts(renderProductsGrid){                 //funcion que carga productos desde una URL
+  const xhr = new XMLHttpRequest();                //crea una instancia de XMLHttpRequest para realizar una solicitud HTTP.
 
     xhr.addEventListener('load',()=>{
       products = JSON.parse(xhr.response).map((productDetails) =>{          //transorma JSON en un objeto y lo recorre
@@ -168,8 +168,8 @@ export function loadProducts(renderProductsGrid){
     
 
 
-    xhr.open('GET', 'https://supersimplebackend.dev/products')
-    xhr.send();
+    xhr.open('GET', 'https://supersimplebackend.dev/products')     //configura la solicitud HTTP para hacer un GET a la URL
+    xhr.send();         //envía la solicitud al servidor. En este momento, la solicitud se realiza y comienza a esperar la respuesta
 };
 
 //el metodo ().map crea un nuevo arreglo con el resultado de la funcion que yo le pase

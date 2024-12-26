@@ -1,7 +1,6 @@
 
 
 
-
 import {cart, AddToCart} from '../data/cart.js';
 import {products, loadProducts} from '../data/products.js';
 import {formatCurrency} from '../scripts/utils/money.js';
@@ -64,21 +63,21 @@ function renderProductsGrid(){       //se pone en una funcion por una cuestion d
             <button class="add-to-cart-button button-primary" data-product-id="${products.id}" >
               Añadir al carrito
             </button>
-          </div> 
+      </div> 
     `;
   })
 
 
 
   document.querySelector('.products-grid').innerHTML= productsHTML;
-
+ 
 
 
   function updateCartQuantity(){                      //esta funcion modifica el carrito visual de la pagina
-    let cartQuantity =0;
+    let cartQuantity=0;
 
       cart.forEach((cartItem)=>{
-        cartQuantity += cartItem.quantity;            //sumamos la cantidad de productos que hay en el carritos
+        cartQuantity += cartItem.quantity;            //sumamos la cantidad de productos que hay en el carrito
       })
       
       document.querySelector('.cart-quantity').innerHTML= cartQuantity;   //usamos DOM para agregar en el html
@@ -89,14 +88,15 @@ function renderProductsGrid(){       //se pone en una funcion por una cuestion d
 
 
   document.querySelectorAll('.add-to-cart-button').forEach((button)=>{
-    button.addEventListener('click', ()=>{
+    button.addEventListener('click', ()=>{             //al clickear
       const productId = button.dataset.productId;       //obtenemos el id del producto con el dataset y lo almacenamos
 
-      AddToCart(productId);
-      updateCartQuantity();
+      AddToCart(productId);    //se ejecuta la funcion de agregar al carrito
+      updateCartQuantity();     //se actualiza el carrito de la pagina al hacer click
       
     });
   });
+
 
 } //cierre de la funcion
  

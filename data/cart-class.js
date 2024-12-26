@@ -5,7 +5,7 @@
 
 class Cart {                //PascalCase para cosas que generan objetos
 
-  cartItems                               //carrito vacio (undefined)
+  cartItems;                               //carrito vacio (undefined)
   #localStorageKey= undefined;               //donde se guardara la clave del localStorage, es un método privado
   
 
