@@ -1,5 +1,5 @@
 <h2> E-commerce de Amazon </h2>
-<h4>
+<p>
 En este proyecto, construí la lógica de un e-commerce funcional, como el de Amazon.<br>
 La página presenta cuatro archivos HTML en los cuales cada uno tienen sus propias importaciones a traves de módulos JavaScript.<br>
 La pagina presenta los productos cargados desde una URL externa (por ello sus nombres están en inglés), utilizando una petición XMLHttp. Para esta operación asincrónica utilicé promesas.
@@ -10,4 +10,4 @@ En la sección de tus pedidos se puede verificar los elementos que se han compra
 <br>
 <br>
 Todavia sigue en desarrollo.
-</h4>
+</p>
