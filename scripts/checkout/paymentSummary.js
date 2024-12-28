@@ -44,7 +44,7 @@ export function renderPaymentSummary(){        //esta funcion hace el resumen de
             </div>
 
             <div class="payment-summary-row">
-              <div>Articulos (3):</div>
+              <div>Articulos:</div>
               <div class="payment-summary-money">$${formatCurrency(productPriceCents)}</div>
             </div>
 

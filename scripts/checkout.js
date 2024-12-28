@@ -63,7 +63,7 @@ async function loadPage(){
 
 
 
-new Promise((resolve)=>{
+new Promise((resolve)=>{ 
   loadProducts(()=>{
     resolve();          //llama a esta funcion cuando loadProducts ha terminado
   });
