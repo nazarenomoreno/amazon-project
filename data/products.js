@@ -3,7 +3,7 @@
 import {formatCurrency} from "../scripts/utils/money.js";
 
 
-export function getProduct(productId){             
+export function getProduct(productId){               //funcion para obtener el producto con sus propiedades originales        
   let matchingProduct;                              //en parametro se guarda el id del producto del carrito
 
   products.forEach((product)=>{                 //se recorren todos los productos originales

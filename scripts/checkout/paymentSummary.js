@@ -24,6 +24,7 @@ export function renderPaymentSummary(){        //esta funcion hace el resumen de
 
 
 
+
     });
 
     

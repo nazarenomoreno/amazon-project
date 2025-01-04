@@ -7,7 +7,4 @@ Los productos se regeneran utilizando Clases y luego se depliegan en la pantalla
 Cuando un producto se añade al carrito se visualiza luego en la página de verificación de articulos, en donde se puede eliminar en caso de no quererlo. Este despliegue es el resumen de pedidos, el cual tambien muestra tres tipos de envio con sus respectivos precios y dias de entrega, el cual también el cliente puede modificar eligiendo el de su preferencia.
 A su vez, a la derecha, se muestra el resumen de pago, mostrando el precio total de los articulos, precio de envio, precio con impuestos, el precio total y un botón general para "Hacer el pedido".
 En la sección de tus pedidos se puede verificar los elementos que se han comprado, brindando tambien la posibilidad de comprar de nuevo y rastrear el envío de los paquetes individuales.
-<br> 
-<br> 
-Todavia sigue en desarrollo.
 </p>

@@ -54,46 +54,60 @@ export function renderOrderSummary(){              //funcion que carga la págin
       //-----------------
 
 
-    cartSummaryHTML = cartSummaryHTML + `
-        <div class="cart-item-container js-test-container js-cart-item-container-${matchingProduct.id}">
-            <div class="delivery-date">
-              Fecha de entrega: ${dateString}               <!--fecha de entrega que calculamos antes-->
-            </div>
-
-            <div class="cart-item-details-grid">
-                <img class="product-image"
-                  src="${matchingProduct.image}">
-
-                <div class="cart-item-details">
-                <div class="product-name">
-                  ${matchingProduct.name}
-                </div>
-                <div class="product-price">
-                  ${matchingProduct.getPrice()}
-                </div>
-                <div class="product-quantity js-test-quantity-product${matchingProduct.id}">
-                  <span>
-                    Cantidad: <span class="quantity-label">${cartItem.quantity}</span>
-                  </span>
-                  <span class="update-quantity-link link-primary">
-                    Actualizar
-                  </span>
-                  <span class="delete-quantity-link js-test-delete-link-${matchingProduct.id} link-primary"
-                  data-product-id="${matchingProduct.id}">
-                    Eliminar
-                  </span>
-                </div>
-              </div>
-
-              <div class="delivery-options"> 
-                <div class="delivery-options-title">
-                  Elige una opción de entrega:
-                </div>
-                ${deliveryOptionsHMTL(matchingProduct, cartItem)}               <!-- funcion para mostrar HTML las opciones de delivery -->
-              </div>
-            </div>
+      cartSummaryHTML = cartSummaryHTML + `
+      <div class="cart-item-container js-test-container js-cart-item-container-${matchingProduct.id}">
+        
+        <div class="delivery-date">
+          Fecha de entrega: ${dateString} 
         </div>
-      `;
+    
+        
+        <div class="cart-item-details-grid">           <!-- grid (imagen, nombre, precio, cantidad y opciones de entrega) -->
+          
+          
+          <img class="product-image" src="${matchingProduct.image}">         <!--columna 1-->
+
+
+    
+          <div class="cart-item-details">                                    <!--columna 2-->
+    
+            <div class="product-name">                
+              ${matchingProduct.name}
+            </div>
+    
+            
+            <div class="product-price">
+              ${matchingProduct.getPrice()}
+            </div>
+    
+            
+            <div class="product-quantity js-test-quantity-product${matchingProduct.id}">
+              <span>
+                Cantidad: <span class="quantity-label">${cartItem.quantity}</span>
+              </span>
+              <span class="update-quantity-link link-primary">
+                Actualizar
+              </span>
+              <span 
+                class="delete-quantity-link js-test-delete-link-${matchingProduct.id} link-primary"
+                data-product-id="${matchingProduct.id}">
+                Eliminar
+              </span>
+            </div>
+
+          </div>
+          
+          
+          <div class="delivery-options">                                         <!--columna 3-->
+            <div class="delivery-options-title">
+              Elige una opción de entrega:
+            </div>
+            ${deliveryOptionsHMTL(matchingProduct, cartItem)}   <!-- HTML generado dinámicamente para opciones de entrega -->
+          </div>
+    
+        </div> 
+      </div> 
+    `;
 
   });
 
@@ -122,7 +136,7 @@ export function renderOrderSummary(){              //funcion que carga la págin
           <div class="delivery-option js-delivery-option" data-product-id="${matchingProduct.id}"
           data-delivery-option-id="${deliveryOption.id}">
               <input type="radio"
-                  ${isChecked ? 'checked' : ''}                        
+                  ${isChecked ? 'checked' : ''}              /*si isChecked es true, sino*/                
                   class="delivery-option-input"          
                   name="delivery-option-${matchingProduct.id}">
               <div>
@@ -133,7 +147,7 @@ export function renderOrderSummary(){              //funcion que carga la págin
                   ${priceString} Envío
                 </div>
               </div>
-            </div>
+          </div>
       `
     });
     return html;                                                       //devuelve el html concatenado
@@ -175,7 +189,7 @@ export function renderOrderSummary(){              //funcion que carga la págin
       
     });
     
-  });
+ });
 
 };
 
