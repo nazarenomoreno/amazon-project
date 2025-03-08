@@ -90,7 +90,6 @@ function renderProductsGrid(){       //se pone en una funcion por una cuestion d
   document.querySelectorAll('.add-to-cart-button').forEach((button)=>{
     button.addEventListener('click', ()=>{             //al clickear
       const productId = button.dataset.productId;       //obtenemos el id del producto con el dataset y lo almacenamos
-
       AddToCart(productId);    //se ejecuta la funcion de agregar al carrito
       updateCartQuantity();     //se actualiza el carrito de la pagina al hacer click
       

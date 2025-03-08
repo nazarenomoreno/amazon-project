@@ -66,6 +66,7 @@ async function loadPage(){
 new Promise((resolve)=>{ 
   loadProducts(()=>{
     resolve();          //llama a esta funcion cuando loadProducts ha terminado
+    console.log('anda')
   });
 })
 .then(()=>{                     //se ejecuta a traves de resolve

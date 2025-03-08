@@ -5,7 +5,7 @@ loadFromStorage();
 
 
 export function loadFromStorage(){        //funcion para cargar desde el localStorage
-
+  
   cart =  JSON.parse(localStorage.getItem('cart')) ;      //usamos localStorage para obtener los datos del navegador
   //al recargar el localStorage se cargara el carrito modificado o si esta vacio, uno nuevo
   
@@ -13,6 +13,22 @@ export function loadFromStorage(){        //funcion para cargar desde el localSt
     cart= [];                             //se llena, no se inicializa
    }
 
+
+  console.log('carrito cargado: ', cart)
+  
+
+
+
+  let cantidadDeProductos = 0;
+
+  if(document.querySelector('.cart-quantity')){      //existirá solo en el HTML index 
+    cart.forEach((element)=>{
+      cantidadDeProductos = cantidadDeProductos + 1
+  
+    })
+    document.querySelector('.cart-quantity').textContent = cantidadDeProductos;
+  }
+  
  
 };
 
